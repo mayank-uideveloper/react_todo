@@ -9,7 +9,7 @@ const AddUsers = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        console.log(enteredUsername,enteredAge,enteredDesignation);
+        props.addUserDetails(enteredUsername,enteredAge,enteredDesignation);
         setEnteredUsername('');
         setEnteredAge('');
         setEnteredDesignation('');

@@ -1,6 +1,10 @@
 const CustomButton = props => {
+    const customClass = props.cusClass ? props.cusClass : '';
     return (
-        <button type={props.actionType ? props.actionType : 'button'} className={`btn ${props.cusClass}`}>
+        <button 
+            type={props.actionType ? props.actionType : 'button'}
+            onClick = {props.clickEvent} 
+            className={`btn btn-dark mt-3 ${customClass}`}>
             {props.children}
         </button>
     )

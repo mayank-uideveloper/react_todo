@@ -7,8 +7,25 @@ body{
 }
 
 
+.app_header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app_header_logo {
+  max-width: 120px;
+}
+
+.app_header_logo img {
+  width: 100%;
+}
+
 input[type=text],
 input[type=text]:focus,
+input[type=password],
+input[type=password]:focus,
 input[type=number],
 input[type=number]:focus{
   color: #fff;

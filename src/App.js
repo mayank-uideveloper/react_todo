@@ -1,50 +1,55 @@
+import React, {useState} from 'react';
 import './App.css';
-import AddUsers from './Container/Users/AddUsers';
-import UsersList from './Container/Users/UsersList';
-import { useState, useEffect } from 'react';
+import Auth from './Container/Auth/AuthenticationWrap';
+import Header from './Container/Layout/Header';
+import { AuthContext } from './Context/Auth-Context';
+import UserModule from './Container/Users/UserModule';
+import ContainerCard from './UI/ContainerCard';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRegister, setUserRegister] = useState(false);
+  const [loginValid, setLoginValid] = useState(false);
+  const [password, setPassword] = useState('');
 
-  const userStoredData = () => {
-    const savedInfo = localStorage.getItem("userInfo");
-    const initialValue = JSON.parse(savedInfo);
-    return initialValue || "";
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
   }
 
-  const [userList, setUserList] = useState(userStoredData);
-
-  const addUserDetails = (uName,uAge,uDes) => {
-
-    setUserList((prevList) => {
-      return [
-        ...prevList,
-        {
-          id: Math.floor(Math.random().toString() * 1000),
-          name:uName, 
-          age:uAge,
-          designation:uDes,
-        }
-      ]
-    });
+  const showRegisterHandler = () => {
+    setUserRegister(true)
   }
 
-  useEffect(() => {
-    localStorage.setItem('userInfo', JSON.stringify(userList));
-  }, [userList]);
+  const hideRegisterHandler = () => {
+    setUserRegister(false)
+  }
 
-  const deleteUser = (id) => {
-    const newUserList = userList.filter((item) => item.id !== id);
-    setUserList(newUserList);
+  const getLoginData = (username,password) => {
+
+    if(username === 'admin' && password === 'password') {
+      setIsLoggedIn(true);
+    }
   }
 
   return (
-    <div className="container">
-      <header className="text-center text-light my-4">
-        <h1 className="mb-4">Users List</h1>
-      </header>
-       <AddUsers addUserDetails={addUserDetails} />
-       <UsersList userList={userList} deleteUser={deleteUser} />
-    </div>
+      <AuthContext.Provider value={{
+        isLoggedIn: isLoggedIn,
+        isRegister:userRegister,
+        isLogout: logoutHandler,
+        showRegisterHandler: showRegisterHandler,
+        hideRegisterHandler: hideRegisterHandler
+      }}>
+        <Header />
+        {!isLoggedIn &&
+          <Auth  getLoginData={getLoginData} />
+        }
+        {isLoggedIn && 
+          <ContainerCard>
+            <UserModule />
+          </ContainerCard>
+        }
+      </AuthContext.Provider>
+      
   );
 }
 

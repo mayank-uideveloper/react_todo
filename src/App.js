@@ -8,7 +8,7 @@ function App() {
   const userStoredData = () => {
     const savedInfo = localStorage.getItem("userInfo");
     const initialValue = JSON.parse(savedInfo);
-    return initialValue || "";
+    return initialValue || [''];
   }
 
   const [userList, setUserList] = useState(userStoredData);

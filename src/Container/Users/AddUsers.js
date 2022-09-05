@@ -1,47 +1,32 @@
-import CustomButton from "../../UI/CustomButton";
 import { useState } from "react";
 
+
+import CustomButton from "../../UI/CustomButton";
+
+
 const AddUsers = (props) => {
-    const [enteredUsername, setEnteredUsername] = useState('');
-    const [enteredAge, setEnteredAge] = useState('');
-    const [enteredDesignation, setEnteredDesignation] = useState('');
-    const [errorMsg,setErrorMsg] = useState(false);
-    const errorMessage= {
-        emptyMessage: 'Please enter a valid entry',
-        negitiveValueMessage: 'Please enter a valid age'
-    }
+    const [userInfor, setUserInfor] = useState({
+        username: '',
+        age: '',
+        designation: ''
+    });
 
     const submitHandler = (event) => {
         event.preventDefault();
-
-        if(enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
-            setErrorMsg(true);
-            return;
-        }
-
-        if(Number(enteredAge) <= 0) {
-            setErrorMsg(true);
-            return;
-        }
-
-        props.addUserDetails(enteredUsername,enteredAge,enteredDesignation);
-        setEnteredUsername('');
-        setEnteredAge('');
-        setEnteredDesignation('');
+        console.log(userInfor);
+        setUserInfor({
+            username: '',
+            age: '',
+            designation: ''
+        })
     }
 
     const userChangeHandler = (e) => {
-        setEnteredUsername(e.target.value);
-        setErrorMsg(false);
-    }
+        setUserInfor({
+            ...userInfor,
+            [e.target.name] : e.target.value
+        })
 
-    const ageChangeHandler = (e) => {
-        setEnteredAge(e.target.value);
-        setErrorMsg(false);
-    }
-
-    const designationChangeHandler = (e) => {
-        setEnteredDesignation(e.target.value);
     }
 
     return (
@@ -49,18 +34,15 @@ const AddUsers = (props) => {
             <form onSubmit={submitHandler}>
                 <div className="form-container mb-3">
                     <label htmlFor="username" className="add text-light">Username*</label>
-                    <input autoComplete="off" type="text" value={enteredUsername} onChange={userChangeHandler} className="form-control" name="add" id="username" />
-                    {enteredUsername.length === 0 && errorMsg ? <div style={{fontSize:'12px'}} className="text-danger fst-italic mt-1">{errorMessage.emptyMessage}</div> : null}
+                    <input autoComplete="off" type="text" value={userInfor.username} onChange={userChangeHandler} className="form-control" name="username" id="username" />
                 </div>
                 <div className="form-container mb-3">
                     <label htmlFor="age" className="add text-light">Age*</label>
-                    <input type="number" autoComplete="off" value={enteredAge} onChange={ageChangeHandler} className="form-control" name="add" id="age" />
-                    {enteredAge.length === 0 && errorMsg ? <div style={{fontSize:'12px'}} className="text-danger fst-italic mt-1">{errorMessage.emptyMessage}</div> : null}
-                    {enteredAge.length > 0 && enteredAge <= 0 && errorMsg ? <div style={{fontSize:'12px'}} className="text-danger fst-italic mt-1">{errorMessage.negitiveValueMessage}</div> : null}
+                    <input type="number" autoComplete="off" value={userInfor.age} onChange={userChangeHandler} className="form-control" name="age" id="age" />
                 </div>
                 <div className="form-container mb-3">
                     <label htmlFor="designation" className="add text-light">Designation</label>
-                    <input type="text" autoComplete="off" value={enteredDesignation} onChange={designationChangeHandler} className="form-control" name="add" id="designation" />
+                    <input type="text" autoComplete="off" value={userInfor.designation} onChange={userChangeHandler} className="form-control" name="designation" id="designation" />
                 </div>
 
                 <CustomButton actionType="submit" cusClass="btn-dark w-100 mt-3">Add User</CustomButton>

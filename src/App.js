@@ -1,54 +1,29 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import './App.css';
+
+
 import Auth from './Container/Auth/AuthenticationWrap';
 import Header from './Container/Layout/Header';
-import { AuthContext } from './Context/Auth-Context';
 import UserModule from './Container/Users/UserModule';
+import { AuthContextProvider, AuthContext } from './Context/Auth-Context';
 import ContainerCard from './UI/ContainerCard';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRegister, setUserRegister] = useState(false);
-  const [loginValid, setLoginValid] = useState(false);
-  const [password, setPassword] = useState('');
 
-  const logoutHandler = () => {
-    setIsLoggedIn(false);
-  }
-
-  const showRegisterHandler = () => {
-    setUserRegister(true)
-  }
-
-  const hideRegisterHandler = () => {
-    setUserRegister(false)
-  }
-
-  const getLoginData = (username,password) => {
-
-    if(username === 'admin' && password === 'password') {
-      setIsLoggedIn(true);
-    }
-  }
-
+  const ctx = useContext(AuthContext);
+  
   return (
-      <AuthContext.Provider value={{
-        isLoggedIn: isLoggedIn,
-        isRegister:userRegister,
-        isLogout: logoutHandler,
-        showRegisterHandler: showRegisterHandler,
-        hideRegisterHandler: hideRegisterHandler
-      }}>
-        <Header />
-        {!isLoggedIn &&
-          <Auth  getLoginData={getLoginData} />
+    <AuthContextProvider>
+      <Header />
+        {!ctx.isLoggedIn &&
+          <Auth  getLoginData={ctx.getLoginData} />
         }
-        {isLoggedIn && 
+        {ctx.isLoggedIn && 
           <ContainerCard>
             <UserModule />
           </ContainerCard>
         }
-      </AuthContext.Provider>
+    </AuthContextProvider>
       
   );
 }

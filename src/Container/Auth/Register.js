@@ -1,20 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { storageInfo } from "../../Helper/Storage";
+
+
+// Error handling left in this rest all done
+
 import CustomButton from "../../UI/CustomButton";
 
 const Register = (props) => {
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [regPassword, setRegPassword] = useState('');
-    const [regConfirmPassword, setRegConfirmPassword] = useState('');
+    const [userRegistration, setUserRegistration] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        regPassword: '',
+        regConfirmPassword: ''
+    })
+
+    const [storeData, setStoreData] = useState(storageInfo.renderUserObject);
 
     const changehandler = (e) => {
-
+        const value = e.target.value;
+        setUserRegistration({
+            ...userRegistration,
+            [e.target.name] : value
+        });
     }
     const userRegisterHandler = (e) => {
         e.preventDefault();
+
+        setStoreData((prevData) => {
+            const newItem = [...prevData,{...userRegistration}]
+            
+            return newItem
+        })
+
+        setUserRegistration({
+            firstName: '',
+            lastName: '',
+            email: '',
+            regPassword: '',
+            regConfirmPassword: ''
+        })
+
     }
+
+    useEffect(() => {
+        localStorage.setItem('registeredUserInfo', JSON.stringify(storeData))
+    },[storeData])
 
     return(
         <>
@@ -23,14 +56,14 @@ const Register = (props) => {
                     <div className="col-12 col-md-6">
                         <div className="form-container mb-3">
                             <label htmlFor="username" className="add text-light">First name*</label>
-                            <input autoComplete="off" type="text" value={firstName} onChange={changehandler} className="form-control" name="add" id="username" />
+                            <input autoComplete="off" type="text" value={userRegistration.firstName} onChange={changehandler} className="form-control" name="firstName" id="username" />
                         </div>
 
                     </div>
                     <div className="col-12 col-md-6">
                         <div className="form-container mb-3">
                             <label htmlFor="username" className="add text-light">Last name*</label>
-                            <input autoComplete="off" type="text" value={lastName} onChange={changehandler} className="form-control" name="add" id="username" />
+                            <input autoComplete="off" type="text" value={userRegistration.lastName} onChange={changehandler} className="form-control" name="lastName" id="username" />
                         </div>
                     </div>
                 </div>
@@ -38,7 +71,7 @@ const Register = (props) => {
                     <div className="col-12">
                         <div className="form-container mb-3">
                             <label htmlFor="username" className="add text-light">Email address*</label>
-                            <input autoComplete="off" type="text" value={email} onChange={changehandler} className="form-control" name="add" id="username" />
+                            <input autoComplete="off" type="text" value={userRegistration.email} onChange={changehandler} className="form-control" name="email" id="username" />
                         </div>
                     </div>
                 </div>
@@ -47,7 +80,7 @@ const Register = (props) => {
                     <div className="col-12">
                         <div className="form-container mb-3">
                             <label htmlFor="password" className="add text-light">Password*</label>
-                            <input autoComplete="off" type="password" value={regPassword} onChange={changehandler} className="form-control" name="add" id="password" />
+                            <input autoComplete="off" type="password" value={userRegistration.regPassword} onChange={changehandler} className="form-control" name="regPassword" id="password" />
                         </div>
                     </div>
                 </div>
@@ -56,7 +89,7 @@ const Register = (props) => {
                     <div className="col-12">
                         <div className="form-container mb-3">
                             <label htmlFor="password" className="add text-light">Confirm Password*</label>
-                            <input autoComplete="off" type="password" value={regConfirmPassword} onChange={changehandler} className="form-control" name="add" id="password" />
+                            <input autoComplete="off" type="password" value={userRegistration.regConfirmPassword} onChange={changehandler} className="form-control" name="regConfirmPassword" id="password" />
                         </div>
                     </div>
                 </div>

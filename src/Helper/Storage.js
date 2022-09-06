@@ -1,21 +1,20 @@
-
 export const storageInfo = {
     registeredUserInfo: () => {
-        let userConst = localStorage.getItem('registeredUserInfo');
+        let userConst = localStorage.getItem("registeredUserInfo");
 
-        if(userConst === null) {
-            localStorage.setItem('registeredUserInfo',JSON.stringify([]));
+        if (userConst === null) {
+            localStorage.setItem("registeredUserInfo", JSON.stringify([]));
         }
     },
 
-    renderUserObject : () => {
-        let userData = localStorage.getItem('registeredUserInfo');
+    renderUserObject: () => {
+        let userData = localStorage.getItem("registeredUserInfo");
 
-        let userStorage = {}
+        let userStorage = {};
 
-        if(userData) {
+        if (userData) {
             userStorage = JSON.parse(userData);
         }
         return userStorage;
-    }
-}
+    },
+};

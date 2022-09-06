@@ -1,15 +1,15 @@
 const ContainerCard = (props) => {
-    return(
+    return (
         <div className="container">
-            {props.headingData && 
+            {props.headingData && (
                 <header className="text-center text-light my-4">
                     <h1 className="mb-4">{props.headingData}</h1>
                 </header>
-            }
-            
+            )}
+
             {props.children}
         </div>
-    )
-}
+    );
+};
 
 export default ContainerCard;

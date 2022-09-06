@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+import { hasLoggedIn } from "../Helper/Constants";
 import { storageInfo } from "../Helper/Storage";
+
 export const AuthContext = React.createContext({
     isLoggedIn: false,
     isRegister: false,
     logoutHandler: () => {},
-    showRegisterHandler: () => {},
-    hideRegisterHandler: () => {},
+    toggleRegisterHandler: () => {},
     getLoginData: (username, password) => {},
 });
 
@@ -19,23 +20,28 @@ export const AuthContextProvider = (props) => {
     const loginData = storageInfo.renderUserObject();
     const logoutHandler = () => {
         setLoginState(false);
+        localStorage.setItem(hasLoggedIn, JSON.stringify(false));
     };
 
-    const showRegisterHandler = () => {
+    const toggleRegisterHandler = () => {
         setUserRegister(!userRegister);
-    };
-
-    const hideRegisterHandler = () => {
-        setUserRegister(false);
     };
 
     const getLoginData = (username, password) => {
         loginData.filter((data) => {
             if (data.email === username && data.regPassword === password) {
                 setLoginState(true);
+                localStorage.setItem(hasLoggedIn, JSON.stringify(true));
             }
         });
     };
+
+    useEffect(() => {
+        const getStorage = localStorage.getItem(hasLoggedIn);
+        if(getStorage === 'true') {
+            setLoginState(true);
+        }
+    },[loginState])
 
     return (
         <AuthContext.Provider
@@ -43,8 +49,7 @@ export const AuthContextProvider = (props) => {
                 isLoggedIn: loginState,
                 isRegister: userRegister,
                 isLogout: logoutHandler,
-                showRegisterHandler: showRegisterHandler,
-                hideRegisterHandler: hideRegisterHandler,
+                toggleRegisterHandler: toggleRegisterHandler,
                 getLoginData: getLoginData,
             }}
         >

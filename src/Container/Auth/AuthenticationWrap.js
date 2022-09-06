@@ -28,11 +28,11 @@ const AuthenticationWrap = (props) => {
             {!authData.isLoggedIn && !authData.isRegister && (
                 <Login
                     getLoginData={props.getLoginData}
-                    registerHandler={authData.showRegisterHandler}
+                    registerHandler={authData.toggleRegisterHandler}
                 />
             )}
             {authData.isRegister && (
-                <Register registerHandler={authData.hideRegisterHandler} />
+                <Register registerHandler={authData.toggleRegisterHandler} />
             )}
         </ContainerCard>
     );

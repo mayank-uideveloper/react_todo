@@ -3,9 +3,8 @@ import "./App.css";
 
 import Auth from "./Container/Auth/AuthenticationWrap";
 import Header from "./Container/Layout/Header";
-import UserModule from "./Container/Users/UserModule";
 import { AuthContext } from "./Context/Auth-Context";
-import ContainerCard from "./UI/ContainerCard";
+import CustomCard from "./UI/CustomCard";
 
 function App() {
     const ctx = useContext(AuthContext);
@@ -15,9 +14,11 @@ function App() {
             <Header />
             {!ctx.isLoggedIn && <Auth />}
             {ctx.isLoggedIn && (
-                <ContainerCard>
-                    <UserModule />
-                </ContainerCard>
+                <CustomCard>
+                    Task List
+
+                    Add task
+                </CustomCard>
             )}
         </>
     );

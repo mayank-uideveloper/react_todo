@@ -13,9 +13,12 @@ body{
   align-items: center;
   justify-content: space-between;
 }
+.cus_container {
+  padding: 20px;
+}
 
 .app_header_logo {
-  max-width: 120px;
+  max-width: 100px;
 }
 
 .app_header_logo img {

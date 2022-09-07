@@ -13,6 +13,11 @@ const Register = (props) => {
         email: "",
         regPassword: "",
         regConfirmPassword: "",
+        firstNameError: "",
+        lastNameError: "",
+        emailError: "",
+        regPasswordError: "",
+        regConfirmPasswordError: "",
     });
 
     const [storeData, setStoreData] = useState(storageInfo.renderUserObject);
@@ -32,13 +37,18 @@ const Register = (props) => {
 
             return newItem;
         });
-
+        
         setUserRegistration({
             firstName: "",
             lastName: "",
             email: "",
             regPassword: "",
             regConfirmPassword: "",
+            firstNameError: "",
+            lastNameError: "",
+            emailError: "",
+            regPasswordError: "",
+            regConfirmPasswordError: "",
         });
     };
 
@@ -67,6 +77,7 @@ const Register = (props) => {
                                 name="firstName"
                                 id="username"
                             />
+                            <div>{userRegistration.firstNameError}</div>
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
@@ -86,6 +97,7 @@ const Register = (props) => {
                                 name="lastName"
                                 id="username"
                             />
+                            <div>{userRegistration.lastName}</div>
                         </div>
                     </div>
                 </div>

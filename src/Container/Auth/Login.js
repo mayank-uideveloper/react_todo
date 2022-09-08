@@ -1,30 +1,18 @@
-import React, { useState, useContext } from "react";
-import { AuthContext } from "../../Context/Auth-Context";
-
+import LoginFunctionality from "../../Helper/LoginFunctionality";
+import validate from "../../Helper/Validation";
 import CustomButton from "../../UI/CustomButton";
 
 const Login = (props) => {
-    const [userName, setUserName] = useState("");
-    const [password, setPassword] = useState("");
-    const ctx = useContext(AuthContext);
-
-    const userChangeHandler = (e) => {
-        setUserName(e.target.value);
-    };
-
-    const passwordChangeHandler = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const loginHandler = (e) => {
-        ctx.getLoginData(userName, password);
-        e.preventDefault();
-        setUserName("");
-        setPassword("");
-    };
+    const [loginChangeHandler, loginHandler, userInfo, errors, loginMatch] =
+        LoginFunctionality(validate);
 
     return (
         <>
+            {loginMatch && (
+                <div className="alert alert-danger" role="alert">
+                    Invalid username and password
+                </div>
+            )}
             <form onSubmit={loginHandler}>
                 <div className="form-container mb-3">
                     <label htmlFor="username" className="add text-light">
@@ -33,12 +21,15 @@ const Login = (props) => {
                     <input
                         autoComplete="off"
                         type="text"
-                        value={userName}
-                        onChange={userChangeHandler}
+                        value={userInfo.username}
+                        onChange={loginChangeHandler}
                         className="form-control"
-                        name="add"
+                        name="username"
                         id="username"
                     />
+                    {errors.username && (
+                        <div className="error_field">{errors.username}</div>
+                    )}
                 </div>
 
                 <div className="form-container mb-3">
@@ -48,12 +39,15 @@ const Login = (props) => {
                     <input
                         autoComplete="off"
                         type="password"
-                        value={password}
-                        onChange={passwordChangeHandler}
+                        value={userInfo.password}
+                        onChange={loginChangeHandler}
                         className="form-control"
-                        name="add"
+                        name="password"
                         id="password"
                     />
+                    {errors.password && (
+                        <div className="error_field">{errors.password}</div>
+                    )}
                 </div>
                 <CustomButton actionType="submit" cusClass="w-100">
                     Login

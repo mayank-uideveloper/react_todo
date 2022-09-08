@@ -16,7 +16,11 @@ body{
 .cus_container {
   padding: 20px;
 }
-
+.error_field {
+  color: red;
+  font-size: 11px;
+  font-weight: 500;
+}
 .app_header_logo {
   max-width: 100px;
 }

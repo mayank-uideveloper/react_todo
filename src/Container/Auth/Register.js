@@ -1,61 +1,10 @@
-import { useEffect, useState } from "react";
-
-import { storageInfo } from "../../Helper/Storage";
-
-// Error handling left in this rest all done
-
+import RegisterFunctionality from "../../Helper/RegisterFunctionality";
+import validate from '../../Helper/Validation';
 import CustomButton from "../../UI/CustomButton";
 
 const Register = (props) => {
-    const [userRegistration, setUserRegistration] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        regPassword: "",
-        regConfirmPassword: "",
-        firstNameError: "",
-        lastNameError: "",
-        emailError: "",
-        regPasswordError: "",
-        regConfirmPasswordError: "",
-    });
-
-    const [storeData, setStoreData] = useState(storageInfo.renderUserObject);
-
-    const changehandler = (e) => {
-        const value = e.target.value;
-        setUserRegistration({
-            ...userRegistration,
-            [e.target.name]: value,
-        });
-    };
-    const userRegisterHandler = (e) => {
-        e.preventDefault();
-
-        setStoreData((prevData) => {
-            const newItem = [...prevData, { ...userRegistration }];
-
-            return newItem;
-        });
-        
-        setUserRegistration({
-            firstName: "",
-            lastName: "",
-            email: "",
-            regPassword: "",
-            regConfirmPassword: "",
-            firstNameError: "",
-            lastNameError: "",
-            emailError: "",
-            regPasswordError: "",
-            regConfirmPasswordError: "",
-        });
-    };
-
-    useEffect(() => {
-        localStorage.setItem("registeredUserInfo", JSON.stringify(storeData));
-    }, [storeData]);
-
+    const {changehandler, userRegistration, userRegisterHandler, errors} = RegisterFunctionality(validate);
+    
     return (
         <>
             <form onSubmit={userRegisterHandler}>
@@ -63,7 +12,7 @@ const Register = (props) => {
                     <div className="col-12 col-md-6">
                         <div className="form-container mb-3">
                             <label
-                                htmlFor="username"
+                                htmlFor="firstname"
                                 className="add text-light"
                             >
                                 First name*
@@ -71,19 +20,19 @@ const Register = (props) => {
                             <input
                                 autoComplete="off"
                                 type="text"
-                                value={userRegistration.firstName}
+                                value={userRegistration.firstname}
                                 onChange={changehandler}
                                 className="form-control"
-                                name="firstName"
-                                id="username"
+                                name="firstname"
+                                id="firstname"
                             />
-                            <div>{userRegistration.firstNameError}</div>
+                            {errors.firstname && <div className="error_field">{errors.firstname}</div>}
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
                         <div className="form-container mb-3">
                             <label
-                                htmlFor="username"
+                                htmlFor="lastname"
                                 className="add text-light"
                             >
                                 Last name*
@@ -91,13 +40,13 @@ const Register = (props) => {
                             <input
                                 autoComplete="off"
                                 type="text"
-                                value={userRegistration.lastName}
+                                value={userRegistration.lastname}
                                 onChange={changehandler}
                                 className="form-control"
-                                name="lastName"
-                                id="username"
+                                name="lastname"
+                                id="lastname"
                             />
-                            <div>{userRegistration.lastName}</div>
+                            {errors.lastname && <div className="error_field">{errors.lastname}</div>}
                         </div>
                     </div>
                 </div>
@@ -105,7 +54,7 @@ const Register = (props) => {
                     <div className="col-12">
                         <div className="form-container mb-3">
                             <label
-                                htmlFor="username"
+                                htmlFor="email"
                                 className="add text-light"
                             >
                                 Email address*
@@ -117,8 +66,9 @@ const Register = (props) => {
                                 onChange={changehandler}
                                 className="form-control"
                                 name="email"
-                                id="username"
+                                id="email"
                             />
+                            {errors.email && <div className="error_field">{errors.email}</div>}
                         </div>
                     </div>
                 </div>
@@ -127,7 +77,7 @@ const Register = (props) => {
                     <div className="col-12">
                         <div className="form-container mb-3">
                             <label
-                                htmlFor="password"
+                                htmlFor="regPassword"
                                 className="add text-light"
                             >
                                 Password*
@@ -139,8 +89,9 @@ const Register = (props) => {
                                 onChange={changehandler}
                                 className="form-control"
                                 name="regPassword"
-                                id="password"
+                                id="regPassword"
                             />
+                            {errors.regPassword && <div className="error_field">{errors.regPassword}</div>}
                         </div>
                     </div>
                 </div>
@@ -149,7 +100,7 @@ const Register = (props) => {
                     <div className="col-12">
                         <div className="form-container mb-3">
                             <label
-                                htmlFor="password"
+                                htmlFor="regConfirmPassword"
                                 className="add text-light"
                             >
                                 Confirm Password*
@@ -161,8 +112,9 @@ const Register = (props) => {
                                 onChange={changehandler}
                                 className="form-control"
                                 name="regConfirmPassword"
-                                id="password"
+                                id="regConfirmPassword"
                             />
+                            {errors.regConfirmPassword && <div className="error_field">{errors.regConfirmPassword}</div>}
                         </div>
                     </div>
                 </div>

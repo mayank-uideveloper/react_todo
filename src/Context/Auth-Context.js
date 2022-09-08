@@ -16,8 +16,9 @@ export const AuthContextProvider = (props) => {
     const [userRegister, setUserRegister] = useState(false);
 
     storageInfo.registeredUserInfo();
-
     const loginData = storageInfo.renderUserObject();
+
+
     const logoutHandler = () => {
         setLoginState(false);
         localStorage.setItem(hasLoggedIn, JSON.stringify(false));
@@ -33,6 +34,7 @@ export const AuthContextProvider = (props) => {
                 setLoginState(true);
                 localStorage.setItem(hasLoggedIn, JSON.stringify(true));
             }
+            return true;
         });
     };
 

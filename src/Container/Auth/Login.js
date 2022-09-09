@@ -1,5 +1,5 @@
 import LoginFunctionality from "../../Helper/LoginFunctionality";
-import validate from "../../Helper/Validation";
+import validate from "../../Helper/LoginValidation";
 import CustomButton from "../../UI/CustomButton";
 
 const Login = (props) => {

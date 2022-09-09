@@ -1,5 +1,5 @@
 import RegisterFunctionality from "../../Helper/RegisterFunctionality";
-import validate from '../../Helper/Validation';
+import validate from '../../Helper/RegisterValidation';
 import CustomButton from "../../UI/CustomButton";
 
 const Register = (props) => {

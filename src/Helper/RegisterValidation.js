@@ -1,11 +1,11 @@
-const Validation = (value, localData) => {
+const RegisterValidation = (value, localData) => {
     let error = {};
 
-    if (!value.firstname) {
+    if (!value.firstname.trim()) {
         error.firstname = "This field cannot be blank";
     }
 
-    if (!value.lastname) {
+    if (!value.lastname.trim()) {
         error.lastname = "This field cannot be blank";
     }
 
@@ -36,16 +36,7 @@ const Validation = (value, localData) => {
         error.regConfirmPassword = "Passward should be more than 6 charaters";
     }
 
-    // login logic for blank
-    if (!value.username) {
-        error.username = "This field cannot be blank";
-    }
-
-    if (!value.password) {
-        error.password = "This field cannot be blank";
-    }
-
     return error;
 };
 
-export default Validation;
+export default RegisterValidation;

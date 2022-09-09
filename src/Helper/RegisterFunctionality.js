@@ -3,19 +3,20 @@ import { useEffect, useState } from "react";
 import { storageInfo } from "./Storage";
 
 const RegisterFunctionality = (validate) => {
-    const [userRegistration, setUserRegistration] = useState({
+    const [userRegistration, setUserRegistration] = useState(() => ({
         firstname: "",
         lastname: "",
         email: "",
         regPassword: "",
         regConfirmPassword: "",
-    });
+    }));
 
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState(() => ({}));
     const [storeData, setStoreData] = useState(storageInfo.renderUserObject);
 
     const changehandler = (e) => {
         const { name, value } = e.target;
+
         setUserRegistration({
             ...userRegistration,
             [name]: value,
@@ -24,19 +25,20 @@ const RegisterFunctionality = (validate) => {
 
     const userRegisterHandler = (e) => {
         e.preventDefault();
-
-        setErrors(validate(userRegistration, storeData));
-        console.log(errors);
-        console.log(JSON.stringify(errors));
+        
+        let err = validate(userRegistration, storeData);
+        setErrors((prev) => ({ ...err }));
+        console.log(Object.keys(err));
+        
+        console.log(userRegistration);
         if (
             userRegistration.firstname !== "" &&
             userRegistration.lastname !== "" &&
             userRegistration.email !== "" &&
             userRegistration.regPassword !== "" &&
             userRegistration.regConfirmPassword !== "" &&
-            JSON.stringify(errors) === '{}'
+            Object.keys(err).length === 0
         ) {
-            console.log('may');
             setStoreData((prevData) => {
                 const newItem = [...prevData, { ...userRegistration }];
                 return newItem;

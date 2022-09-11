@@ -1,4 +1,4 @@
-const RegisterValidation = (value, localData) => {
+export const RegisterValidation = (value, localData) => {
     let error = {};
 
     if (!value.firstname.trim()) {
@@ -39,4 +39,16 @@ const RegisterValidation = (value, localData) => {
     return error;
 };
 
-export default RegisterValidation;
+export const LoginValidation = (value) => {
+    let error = {};
+
+    if (!value.username.trim()) {
+        error.username = "This field cannot be blank";
+    }
+
+    if (!value.password) {
+        error.password = "This field cannot be blank";
+    }
+
+    return error;
+};

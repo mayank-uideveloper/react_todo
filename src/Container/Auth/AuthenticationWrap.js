@@ -4,8 +4,8 @@ import { storageInfo } from "../../Helper/Storage";
 
 import { AuthContext } from "../../Context/Auth-Context";
 import ContainerCard from "../../UI/ContainerCard";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "./Login/Login";
+import Register from "./Regiser/Register";
 
 const AuthenticationWrap = (props) => {
     const [registerUserAlert, setRegisterUserAlert] = useState(false);
@@ -14,7 +14,8 @@ const AuthenticationWrap = (props) => {
         if (storageInfo.renderUserObject().length === 0) {
             setRegisterUserAlert(true);
         }
-    }, []);
+    }, [registerUserAlert]);
+
     const authData = useContext(AuthContext);
     return (
         <ContainerCard headingData="Welcome to Portal">

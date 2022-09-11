@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { storageInfo } from "./Storage";
+import { storageInfo } from "../../../Helper/Storage";
 
 const RegisterFunctionality = (validate) => {
     const [userRegistration, setUserRegistration] = useState(() => ({
@@ -25,12 +25,10 @@ const RegisterFunctionality = (validate) => {
 
     const userRegisterHandler = (e) => {
         e.preventDefault();
-        
+
         let err = validate(userRegistration, storeData);
         setErrors((prev) => ({ ...err }));
-        console.log(Object.keys(err));
-        
-        console.log(userRegistration);
+
         if (
             userRegistration.firstname !== "" &&
             userRegistration.lastname !== "" &&

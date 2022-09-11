@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { hasLoggedIn } from "../Helper/Constants";
+import { hasLoggedIn, loginUser } from "../Helper/Constants";
 import { storageInfo } from "../Helper/Storage";
 
 export const AuthContext = React.createContext({
@@ -33,6 +33,9 @@ export const AuthContextProvider = (props) => {
             if (data.email === username && data.regPassword === password) {
                 setLoginState(true);
                 localStorage.setItem(hasLoggedIn, JSON.stringify(true));
+                let obj = {firstname: data.firstname, lastname: data.lastname,email: data.email};
+
+                localStorage.setItem(loginUser, JSON.stringify(obj));
             }
             return true;
         });

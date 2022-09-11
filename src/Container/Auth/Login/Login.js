@@ -1,6 +1,6 @@
-import LoginFunctionality from "../../Helper/LoginFunctionality";
-import validate from "../../Helper/LoginValidation";
-import CustomButton from "../../UI/CustomButton";
+import LoginFunctionality from "./LoginFunctionality";
+import { LoginValidation as validate } from "../../../Helper/Validations";
+import CustomButton from "../../../UI/CustomButton";
 
 const Login = (props) => {
     const [loginChangeHandler, loginHandler, userInfo, errors, loginMatch] =

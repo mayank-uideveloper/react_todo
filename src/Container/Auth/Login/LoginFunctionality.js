@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 
-import { AuthContext } from "../Context/Auth-Context";
-import { hasLoggedIn } from "./Constants";
+import { AuthContext } from "../../../Context/Auth-Context";
+import { hasLoggedIn } from "../../../Helper/Constants";
 
 const LoginFunctionality = (validate) => {
     const ctx = useContext(AuthContext);

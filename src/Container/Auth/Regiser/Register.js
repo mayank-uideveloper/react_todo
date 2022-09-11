@@ -1,10 +1,11 @@
-import RegisterFunctionality from "../../Helper/RegisterFunctionality";
-import validate from '../../Helper/RegisterValidation';
-import CustomButton from "../../UI/CustomButton";
+import RegisterFunctionality from "./RegisterFunctionality";
+import { RegisterValidation as validate } from "../../../Helper/Validations";
+import CustomButton from "../../../UI/CustomButton";
 
 const Register = (props) => {
-    const {changehandler, userRegistration, userRegisterHandler, errors} = RegisterFunctionality(validate);
-    
+    const { changehandler, userRegistration, userRegisterHandler, errors } =
+        RegisterFunctionality(validate);
+
     return (
         <>
             <form onSubmit={userRegisterHandler}>
@@ -26,7 +27,11 @@ const Register = (props) => {
                                 name="firstname"
                                 id="firstname"
                             />
-                            {errors.firstname && <div className="error_field">{errors.firstname}</div>}
+                            {errors.firstname && (
+                                <div className="error_field">
+                                    {errors.firstname}
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
@@ -46,17 +51,18 @@ const Register = (props) => {
                                 name="lastname"
                                 id="lastname"
                             />
-                            {errors.lastname && <div className="error_field">{errors.lastname}</div>}
+                            {errors.lastname && (
+                                <div className="error_field">
+                                    {errors.lastname}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12">
                         <div className="form-container mb-3">
-                            <label
-                                htmlFor="email"
-                                className="add text-light"
-                            >
+                            <label htmlFor="email" className="add text-light">
                                 Email address*
                             </label>
                             <input
@@ -68,7 +74,11 @@ const Register = (props) => {
                                 name="email"
                                 id="email"
                             />
-                            {errors.email && <div className="error_field">{errors.email}</div>}
+                            {errors.email && (
+                                <div className="error_field">
+                                    {errors.email}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -91,7 +101,11 @@ const Register = (props) => {
                                 name="regPassword"
                                 id="regPassword"
                             />
-                            {errors.regPassword && <div className="error_field">{errors.regPassword}</div>}
+                            {errors.regPassword && (
+                                <div className="error_field">
+                                    {errors.regPassword}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -114,7 +128,11 @@ const Register = (props) => {
                                 name="regConfirmPassword"
                                 id="regConfirmPassword"
                             />
-                            {errors.regConfirmPassword && <div className="error_field">{errors.regConfirmPassword}</div>}
+                            {errors.regConfirmPassword && (
+                                <div className="error_field">
+                                    {errors.regConfirmPassword}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

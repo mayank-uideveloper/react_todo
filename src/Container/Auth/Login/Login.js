@@ -19,7 +19,6 @@ const Login = (props) => {
                         Username*
                     </label>
                     <input
-                        autoComplete="off"
                         type="text"
                         value={userInfo.username}
                         onChange={loginChangeHandler}

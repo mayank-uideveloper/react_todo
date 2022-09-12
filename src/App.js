@@ -3,7 +3,9 @@ import "./App.css";
 
 import Auth from "./Container/Auth/AuthenticationWrap";
 import Header from "./Container/Layout/Header";
+import List from "./Container/List/List";
 import { AuthContext } from "./Context/Auth-Context";
+import CustomButton from "./UI/CustomButton";
 import CustomCard from "./UI/CustomCard";
 
 function App() {
@@ -13,13 +15,7 @@ function App() {
         <>
             <Header />
             {!ctx.isLoggedIn && <Auth />}
-            {ctx.isLoggedIn && (
-                <CustomCard>
-                    Task List
-
-                    Add task
-                </CustomCard>
-            )}
+            {ctx.isLoggedIn && <List />}
         </>
     );
 }

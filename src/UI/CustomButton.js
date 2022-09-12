@@ -3,7 +3,7 @@ const CustomButton = (props) => {
     return (
         <button
             type={props.actionType ? props.actionType : "button"}
-            onClick={props.clickEvent}
+            onClick={props.clickEvent ? props.clickEvent : ()=>{}}
             className={`btn btn-dark mt-3 ${customClass}`}
             disabled={props.btnDisabled ? true : false}
         >

@@ -1,107 +1,159 @@
-body{
-  background-color: #43154c;
+body {
+    background-color: #43154c;
 }
 
-.container{
-  max-width: 450px;
+.container {
+    max-width: 450px;
 }
-
 
 .app_header {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .cus_container {
-  padding: 20px;
+    padding: 20px;
 }
 .error_field {
-  color: red;
-  font-size: 11px;
-  font-weight: 500;
+    color: red;
+    font-size: 11px;
+    font-weight: 500;
 }
 .app_header_logo {
-  max-width: 100px;
+    max-width: 100px;
 }
 
 .app_header_logo img {
-  width: 100%;
+    width: 100%;
 }
 
-input[type=text],
-input[type=text]:focus,
-input[type=password],
-input[type=password]:focus,
-input[type=number],
-input[type=number]:focus{
-  color: #fff;
-  border: none;
-  background-color: rgba(0, 0, 0, .2);
+input[type="text"],
+input[type="text"]:focus,
+input[type="password"],
+input[type="password"]:focus,
+input[type="number"],
+input[type="number"]:focus {
+    color: #fff;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-li.list-group-item{
-  background-color: #423a6f;
-  color: #F8F9FA;
+li.list-group-item {
+    background-color: #423a6f;
+    color: #f8f9fa;
 }
 
-.delete{
-  cursor: pointer;
+.delete {
+    cursor: pointer;
 }
 
-label.add{
-  margin-bottom: 15px;
+label.add {
+    margin-bottom: 15px;
 }
 
-.filtred{
-  display: none !important;
+.filtred {
+    display: none !important;
 }
+
+.form_whiteBased input[type="text"],
+.form_whiteBased input[type="text"]:focus,
+.form_whiteBased input[type="password"],
+.form_whiteBased input[type="password"]:focus,
+.form_whiteBased input[type="number"],
+.form_whiteBased input[type="number"]:focus,
+.form_whiteBased textarea {
+    color: #43154c;
+    border: none;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    outline: none;
+    box-shadow: none;
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form_whiteBased {
+    padding: 15px 30px;
+}
+
 .section_head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, .2);
-  padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 15px;
 }
 
 .section_head h3 {
-  color: white;
-  margin-bottom: 0;
+    color: white;
+    margin-bottom: 0;
 }
 .section_head .btn {
-  margin-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 .modal_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
+
 .modal_overlay {
-  background-color: rgba(17, 17, 17, .9);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 200;
+    background-color: rgba(17, 17, 17, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
 }
 .modal_container {
-  z-index: 220;
-  position: relative;
-  max-width: 500px;
-  width: 90%;
-  background-color: white;
-  margin: 30px;
-  border-radius: 8px;
+    z-index: 220;
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    background-color: white;
+    margin: 30px;
+    border-radius: 8px;
 }
 .modal_head {
-  background-color: #43154c;
-  padding: 15px;
-  color: white;
-  border-radius: 4px 4px 0 0;
-  font-size: 18px;
+    background-color: #43154c;
+    padding: 15px 30px;
+    color: white;
+    border-radius: 4px 4px 0 0;
+    font-size: 18px;
+}
+.btn_theme {
+    background-color: #fba267;
+    border-color: #fba267;
+    color: #2d242f;
 }
 
+.btn + .btn {
+  margin-left: 15px;
+}
 
+.modal_footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px 30px;
+}
 
+.modal_footer .btn {
+  width: 50%;
+}

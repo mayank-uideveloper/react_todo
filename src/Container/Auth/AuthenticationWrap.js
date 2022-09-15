@@ -10,11 +10,11 @@ import Register from "./Regiser/Register";
 const AuthenticationWrap = (props) => {
     const [registerUserAlert, setRegisterUserAlert] = useState(false);
 
+    const abc = storageInfo.renderUserObject().length;
     useEffect(() => {
-        if (storageInfo.renderUserObject().length === 0) {
-            setRegisterUserAlert(true);
-        }
-    }, [registerUserAlert]);
+        console.log(storageInfo.renderUserObject().length)
+        storageInfo.renderUserObject().length === 0 ? setRegisterUserAlert(true) : setRegisterUserAlert(false);
+    }, [abc]);
 
     const authData = useContext(AuthContext);
     return (

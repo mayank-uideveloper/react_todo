@@ -15,6 +15,7 @@ const Header = () => {
             {authData.isLoggedIn && (
                 <div className="app_header_logout-btn">
                     <CustomButton
+                        cusClass="btn_theme"
                         actionType="submit"
                         clickEvent={authData.isLogout}
                     >

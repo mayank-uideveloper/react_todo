@@ -52,3 +52,17 @@ export const LoginValidation = (value) => {
 
     return error;
 };
+
+export const AddTaskValidation = (value) => {
+    let error = {};
+
+    if(!value.taskname.trim()) {
+        error.taskname = "This field cannot be blank";
+    }
+
+    if(!value.projectname.trim()) {
+        error.projectname = "This field cannot be blank";
+    }
+
+    return error;
+}

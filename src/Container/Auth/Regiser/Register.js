@@ -136,7 +136,7 @@ const Register = (props) => {
                         </div>
                     </div>
                 </div>
-                <CustomButton actionType="submit" cusClass="w-100">
+                <CustomButton actionType="submit" cusClass="w-100 btn_theme">
                     Register
                 </CustomButton>
             </form>

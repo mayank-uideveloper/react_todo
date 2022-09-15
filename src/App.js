@@ -5,8 +5,6 @@ import Auth from "./Container/Auth/AuthenticationWrap";
 import Header from "./Container/Layout/Header";
 import List from "./Container/List/List";
 import { AuthContext } from "./Context/Auth-Context";
-import CustomButton from "./UI/CustomButton";
-import CustomCard from "./UI/CustomCard";
 
 function App() {
     const ctx = useContext(AuthContext);

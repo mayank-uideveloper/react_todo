@@ -48,7 +48,7 @@ const Login = (props) => {
                         <div className="error_field">{errors.password}</div>
                     )}
                 </div>
-                <CustomButton actionType="submit" cusClass="w-100">
+                <CustomButton actionType="submit" cusClass="w-100 btn_theme">
                     Login
                 </CustomButton>
             </form>

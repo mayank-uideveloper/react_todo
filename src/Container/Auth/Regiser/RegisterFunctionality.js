@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../../Context/Auth-Context";
 
 import { storageInfo } from "../../../Helper/Storage";
+
 
 const RegisterFunctionality = (validate) => {
     const [userRegistration, setUserRegistration] = useState(() => ({
@@ -13,7 +15,7 @@ const RegisterFunctionality = (validate) => {
 
     const [errors, setErrors] = useState(() => ({}));
     const [storeData, setStoreData] = useState(storageInfo.renderUserObject);
-
+    const authData = useContext(AuthContext);
     const changehandler = (e) => {
         const { name, value } = e.target;
 
@@ -29,28 +31,27 @@ const RegisterFunctionality = (validate) => {
         let err = validate(userRegistration, storeData);
         setErrors((prev) => ({ ...err }));
 
-        if (
-            userRegistration.firstname !== "" &&
-            userRegistration.lastname !== "" &&
-            userRegistration.email !== "" &&
-            userRegistration.regPassword !== "" &&
-            userRegistration.regConfirmPassword !== "" &&
-            Object.keys(err).length === 0
-        ) {
+        if (Object.keys(err).length === 0) {
             setStoreData((prevData) => {
                 const newItem = [...prevData, { ...userRegistration }];
                 return newItem;
             });
 
-            setUserRegistration({
-                firstname: "",
-                lastname: "",
-                email: "",
-                regPassword: "",
-                regConfirmPassword: "",
-            });
+            // setUserRegistration({
+            //     firstname: "",
+            //     lastname: "",
+            //     email: "",
+            //     regPassword: "",
+            //     regConfirmPassword: "",
+            // });
+            setTimeout(() => {
+                authData.toggleRegisterHandler();
+            },400)
+            
         }
     };
+
+    //insphere.mayank@gmail.com
 
     useEffect(() => {
         localStorage.setItem("registeredUserInfo", JSON.stringify(storeData));

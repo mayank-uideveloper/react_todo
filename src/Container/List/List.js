@@ -1,16 +1,18 @@
-import { useState } from "react";
-
 import CustomCard from "../../UI/CustomCard";
 import CustomButton from "../../UI/CustomButton";
 import AddList from "./AddList";
+import ListFunctionality from "./ListFunctionality";
 
 const List = () => {
-    const [addModal, setAddModal] = useState(false);
-
-    //Modal open function
-    const toggleModal = (e) => {
-        setAddModal(!addModal);
-    };
+    const {
+        isEdit,
+        addModal,
+        toggleModal,
+        deleteHandler,
+        editHandler,
+        editData,
+        renderTaskList,
+    } = ListFunctionality();
 
     return (
         <>
@@ -22,17 +24,33 @@ const List = () => {
                     </CustomButton>
                 </div>
             </CustomCard>
-            {addModal && <AddList toggleModal={toggleModal} />}
+            {addModal && (
+                <AddList
+                    isEdit={isEdit}
+                    editData={editData}
+                    toggleModal={toggleModal}
+                />
+            )}
 
-            <div className="card">
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                    </p>
+            {renderTaskList.length > 0 && (
+                <div className="">
+                    {renderTaskList.map((data) => {
+                        return (
+                            <div
+                                key={data.id}
+                                className=""
+                                onClick={() => editHandler(data.id)}
+                            >
+                                <div className="card">
+                                    {data.id}
+                                    {data.taskname}
+                                </div>
+                            </div>
+                        );
+                    })}
+                    <div>Samii</div>
                 </div>
-            </div>
+            )}
         </>
     );
 };

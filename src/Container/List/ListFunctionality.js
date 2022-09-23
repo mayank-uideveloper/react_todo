@@ -4,11 +4,17 @@ import { taskListInfo } from "../../Helper/Constants";
 
 const ListFunctionality = () => {
 
+    const storedData = () => {
+        const savedInfo = localStorage.getItem(taskListInfo);
+        const initialValue = JSON.parse(savedInfo);
+        return initialValue || [];
+    };
+
     const [addModal, setAddModal] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const [editData, setEditData] = useState({});
-    const [renderTaskList, setRenderTaskList] = useState(storageInfo.renderTaskObj());
-
+    const [renderTaskList, setRenderTaskList] = useState(storedData);
+    const [tempData, setTempData] = useState([]);
     //Modal open function
     const toggleModal = (e) => {
         setAddModal(!addModal);

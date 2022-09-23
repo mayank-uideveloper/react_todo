@@ -32,25 +32,7 @@ const List = () => {
                 />
             )}
 
-            {renderTaskList.length > 0 && (
-                <div className="">
-                    {renderTaskList.map((data) => {
-                        return (
-                            <div
-                                key={data.id}
-                                className=""
-                                onClick={() => editHandler(data.id)}
-                            >
-                                <div className="card">
-                                    {data.id}
-                                    {data.taskname}
-                                </div>
-                            </div>
-                        );
-                    })}
-                    <div>Samii</div>
-                </div>
-            )}
+            {renderTaskList.length > 0 ? `mayank ${renderTaskList.length}` : 'c'}
         </>
     );
 };
